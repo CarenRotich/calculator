@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirm Box Example</title>
+    <script type="text/javascript">
+        function show_confirm() {
+            let userResponse = confirm("Are you sure you want to proceed?");
+            if (userResponse) {
+                alert("You pressed OK!");
+            } else {
+                alert("You pressed Cancel!");
+            }
+        }
+    </script>
+</head>
+<body>
+    <input type="button" onclick="show_confirm()" value="Click Me!" />
+</body>
+</html>

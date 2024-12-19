@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "selenium-webdriver": "^4.26.0"
+  },
+  "devDependencies": {
+    "chromedriver": "^130.0.4",
+    "cypress": "^13.15.2"
+  }
+}

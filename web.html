@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>cookie Assignment</title>
+    <style>
+        body{
+            background-color: blueviolet;
+        }
+            
+        
+        /* CSS to style the welcome message */
+        #welcome-message {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #333;
+        }
+    </style>
+    <script type="text/javascript">
+        // Function to set a cookie with name, value, and expiration days
+        function setCookie(c_name, value, expiredays) {
+            var exdate = new Date();
+            exdate.setDate(exdate.getDate() + expiredays);
+            document.cookie = c_name + "=" + escape(value) +
+            ((expiredays == null) ? "" : ";expires=" + exdate.toGMTString());
+        }
+
+        // Function to get a cookie by name
+        function getCookie(c_name) {
+            if (document.cookie.length > 0) {
+                var c_start = document.cookie.indexOf(c_name + "=");
+                if (c_start != -1) {
+                    c_start = c_start + c_name.length + 1;
+                    var c_end = document.cookie.indexOf(";", c_start);
+                    if (c_end == -1) c_end = document.cookie.length;
+                    return unescape(document.cookie.substring(c_start, c_end));
+                }
+            }
+            return "";
+        }
+
+        // Function to check and display a welcome message with cookies
+        function checkCookie() {
+            var username = getCookie('username');
+            var lastVisit = getCookie('lastVisit');
+            var currentDate = new Date().toLocaleString(); // Current date and time
+
+            var welcomeMessageElement = document.getElementById("welcome-message");
+
+            if (username != null && username != "") {
+                // Display welcome message and last visit date on the page
+                welcomeMessageElement.innerHTML = 'Welcome again, ' + username + '!<br>Your last visit was on ' + lastVisit;
+            } else {
+                // Prompt for first-time visitor to enter name
+                username = prompt('Please enter your name:', "");
+                if (username != null && username != "") {
+                    setCookie('username', username, 365); // Set 'username' cookie for 365 days
+                    welcomeMessageElement.innerHTML = 'Welcome, ' + username + '!';
+                }
+            }
+
+            // Update 'lastVisit' cookie with current date and time
+            setCookie('lastVisit', currentDate, 365);
+        }
+    </script>
+</head>
+<body onload="checkCookie()">
+    <!-- HTML element to display the welcome message -->
+    <div id="welcome-message"></div>
+</body>
+</html>
